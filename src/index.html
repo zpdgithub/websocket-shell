@@ -1,0 +1,82 @@
+<!--
+ * @Description: 
+ * @version: 
+ * @Author: Peter Zou
+ * @Date: 2019-11-27 13:55:52
+ * @LastEditors: Peter Zou
+ * @LastEditTime: 2019-11-28 09:51:28
+ -->
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #mess {
+            text-align: center
+        }
+
+        form {
+            margin: 50px 0;
+        }
+
+        #command {
+            width: 500px;
+        }
+
+        #result {
+            background-color: aliceblue;
+            min-height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mess">正在连接...</div>
+    <form>
+        <input id="command" type="text" autofocus>
+        <button id="btn" onclick="sendCommand()" disabled>执行</button>
+    </form>
+    <pre id="result"></pre>
+
+    <script>
+        var mess = document.getElementById("mess");
+        var result = document.getElementById("result");
+        if (window.WebSocket) {
+            var ws = new WebSocket('ws://127.0.0.1:8001');
+
+            ws.onopen = function (e) {
+                console.log("连接服务器成功");
+                document.getElementById('btn').disabled = false;
+                ws.send(JSON.stringify({
+                    from: 'uiClient',
+                    data: 'connect'
+                }));
+            }
+            ws.onclose = function (e) {
+                console.log("服务器关闭");
+            }
+            ws.onerror = function () {
+                console.log("连接出错");
+            }
+
+            ws.onmessage = function (e) {
+                console.log(e.data);
+                mess.innerHTML = "连接成功"
+                result.innerHTML = e.data;
+            }
+        }
+
+        function sendCommand() {
+            var command = document.getElementById('command').value;
+            console.log('sendCommand', command);
+            ws.send(JSON.stringify({
+                from: 'uiClient',
+                data: command
+            }));
+        }
+    </script>
+</body>
+
+</html>
