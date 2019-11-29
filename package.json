@@ -1,5 +1,5 @@
 {
-  "name": "autoShell",
+  "name": "websocket-shell",
   "version": "1.0.0",
   "description": "UIClient execute shell through websocket",
   "main": "index.js",
