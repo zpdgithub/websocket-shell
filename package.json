@@ -1,7 +1,7 @@
 {
   "name": "autoShell",
   "version": "1.0.0",
-  "description": "",
+  "description": "UIClient execute shell through websocket",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,7 +10,7 @@
     "start:builderClient": "node ./src/builderClient.js",
     "start:uiClient": "open -a \"/Applications/Google Chrome.app\" \"./src/index.html\""
   },
-  "keywords": [],
+  "keywords": ["websocket", "shell"],
   "author": "Peter Zou",
   "license": "ISC",
   "dependencies": {
