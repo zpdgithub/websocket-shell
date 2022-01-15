@@ -14,7 +14,7 @@
   "author": "Peter Zou",
   "license": "ISC",
   "dependencies": {
-    "shelljs": "0.8.3",
+    "shelljs": "0.8.5",
     "ws": "7.2.0"
   },
   "devDependencies": {
